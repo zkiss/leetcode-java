@@ -5,14 +5,16 @@ import net.zkiss.leetcode.common.ListNode;
 //https://leetcode.com/problems/reverse-linked-list
 public class ReverseLinkedList {
     public ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return null;
-        }
+        var prev = (ListNode) null;
+        var ret = (ListNode) null;
+        while (head != null) {
+            var next = head.next;
 
-        var ret = new ListNode(head.val);
-        while (head.next != null) {
-            head = head.next;
-            ret = new ListNode(head.val, ret);
+            ret = head;
+            ret.next = prev;
+            prev = head;
+
+            head = next;
         }
 
         return ret;
