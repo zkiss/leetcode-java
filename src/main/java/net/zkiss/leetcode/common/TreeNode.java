@@ -22,16 +22,12 @@ public class TreeNode {
                         .map(TreeNode::new)
                         .orElse(null))
                 .toArray(TreeNode[]::new);
-        for (var i = 0; i < nodes.length; i++) {
+        for (int i = 0, left = 1, right = 2; i < nodes.length; i++) {
             if (nodes[i] == null) continue;
-            var l = i * 2 + 1;
-            if (l < nodes.length) {
-                nodes[i].left = nodes[l];
-            }
-            var r = i * 2 + 2;
-            if (r < nodes.length) {
-                nodes[i].right = nodes[r];
-            }
+            if (left < nodes.length) nodes[i].left = nodes[left];
+            if (right < nodes.length) nodes[i].right = nodes[right];
+            left += 2;
+            right += 2;
         }
         return nodes[0];
     }
