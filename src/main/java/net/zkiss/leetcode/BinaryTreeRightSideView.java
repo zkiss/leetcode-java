@@ -8,17 +8,19 @@ import java.util.List;
 //https://leetcode.com/problems/binary-tree-right-side-view
 public class BinaryTreeRightSideView {
     public List<Integer> rightSideView(TreeNode root) {
-        if (root == null) {
-            return List.of();
+        var ret = new LinkedList<Integer>();
+        dfs(root, 0, ret);
+        return ret;
+    }
+
+    private void dfs(TreeNode node, int level, LinkedList<Integer> list) {
+        if (node == null) {
+            return;
         }
-        var l = rightSideView(root.left);
-        var r = rightSideView(root.right);
-        var ans = new LinkedList<Integer>();
-        ans.add(root.val);
-        ans.addAll(r);
-        if (l.size() > r.size()) {
-            ans.addAll(l.subList(r.size(), l.size()));
+        if (level == list.size()) {
+            list.add(node.val);
         }
-        return ans;
+        dfs(node.right, level + 1, list);
+        dfs(node.left, level + 1, list);
     }
 }
