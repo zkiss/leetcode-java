@@ -41,4 +41,14 @@ class EvaluateDivisionTest {
         )).usingComparatorWithPrecision(PRECISION)
                 .containsExactly(0.5, 2, -1, -1);
     }
+
+    @Test
+    void mix_sets() {
+        assertThat(ed.calcEquation(
+                List.of(List.of("a", "b"), List.of("b", "c"), List.of("x", "y")),
+                new double[]{1, 2, 5},
+                List.of(List.of("a", "x"))
+        )).usingComparatorWithPrecision(PRECISION)
+                .containsExactly(-1);
+    }
 }
