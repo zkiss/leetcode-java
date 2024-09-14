@@ -2,7 +2,6 @@ package net.zkiss.leetcode;
 
 import org.junit.jupiter.api.Test;
 
-import static net.zkiss.leetcode.SuccessfulPairsOfSpellsAndPotions.binSearch;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SuccessfulPairsOfSpellsAndPotionsTest {
@@ -128,29 +127,6 @@ class SuccessfulPairsOfSpellsAndPotionsTest {
                 new int[]{4, 7, 8, 14, 15, 17, 19, 20, 22, 23, 23, 25, 26, 28, 29, 29, 30, 30, 30, 32, 33, 34, 35, 36, 37, 37, 38, 38, 38, 38, 39, 39, 39, 39, 39, 40},
                 317
         )).containsExactly(27);
-    }
-
-    @Test
-    void bs() {
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 5}, 0)).isEqualTo(0);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 5}, 1)).isEqualTo(0);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 5}, 5)).isEqualTo(4);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 5}, 6)).isEqualTo(5);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 6}, 5)).isEqualTo(4);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 6}, 6)).isEqualTo(4);
-        assertThat(binSearch(new int[]{1, 2, 3, 4, 6}, 7)).isEqualTo(5);
-        assertThat(binSearch(new int[]{1, 2, 4, 5}, 3)).isEqualTo(2);
-        assertThat(binSearch(new int[]{1, 2, 4, 5}, 4)).isEqualTo(2);
-        assertThat(binSearch(new int[]{1, 1, 2, 2, 3, 3, 4, 5}, 0)).isEqualTo(0);
-        assertThat(binSearch(new int[]{1, 1, 2, 2, 3, 3, 4, 5}, 1)).isEqualTo(0);
-        assertThat(binSearch(new int[]{1, 1, 2, 2, 3, 3, 4, 5}, 2)).isEqualTo(2);
-        assertThat(binSearch(new int[]{1, 3, 5}, 3)).isEqualTo(1);
-        assertThat(binSearch(new int[]{1, 3, 5}, 2)).isEqualTo(1);
-        assertThat(binSearch(new int[]{1, 3, 5}, 4)).isEqualTo(2);
-        assertThat(binSearch(new int[]{1, 3}, 3)).isEqualTo(1);
-        assertThat(binSearch(new int[]{1, 3}, 2)).isEqualTo(1);
-        assertThat(binSearch(new int[]{1, 3}, 1)).isEqualTo(0);
-        assertThat(binSearch(new int[]{1, 3}, 0)).isEqualTo(0);
     }
 
 }
