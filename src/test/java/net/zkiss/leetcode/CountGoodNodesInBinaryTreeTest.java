@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static net.zkiss.leetcode.common.TreeNode.n;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CountGoodNodesInBinaryTreeTest {
 

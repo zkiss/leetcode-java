@@ -1,6 +1,6 @@
 package net.zkiss.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 //https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero
