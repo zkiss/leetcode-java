@@ -6,49 +6,37 @@ import java.util.PriorityQueue;
 public class TotalCostToHireKWorkers {
 
     public long totalCost(int[] costs, int k, int candidates) {
-        var n = Math.max(0, Math.min(k, costs.length - 2 * candidates));
-        var m = k - n;
-
-        var leftIdx = candidates;
-        var rightIdx = costs.length - candidates;
-        var leftMins = leftIdx < rightIdx ?
-                pq(costs, 0, leftIdx) :
-                pq(costs, 0, costs.length);
-        var rightMins = leftIdx < rightIdx ?
-                pq(costs, rightIdx, costs.length) :
-                null;
-
+        var left = new PriorityQueue<Integer>();
+        var right = new PriorityQueue<Integer>();
+        int i = 0;
+        int j = costs.length;
+        while (left.size() < candidates && i < j) left.add(costs[i++]);
+        while (right.size() < candidates && i < j) right.add(costs[--j]);
         var cost = 0L;
 
-        while (n > 0) {
-            var left = leftMins.peek();
-            var right = rightMins.peek();
-            cost += Math.min(left, right);
-            if (left <= right) {
-                leftMins.remove(left);
-                leftMins.add(costs[leftIdx++]);
-            } else {
-                rightMins.remove(right);
-                rightMins.add(costs[--rightIdx]);
+        while (k > 0) {
+            var l = Integer.MAX_VALUE;
+            var r = Integer.MAX_VALUE;
+            if (!left.isEmpty()) {
+                l = left.peek();
             }
-            n--;
+            if (!right.isEmpty()) {
+                r = right.peek();
+            }
+            cost += Math.min(l, r);
+            if (l <= r) {
+                left.remove(l);
+                if (i < j) {
+                    left.add(costs[i++]);
+                }
+            } else {
+                right.remove(r);
+                if (i < j) {
+                    right.add(costs[--j]);
+                }
+            }
+            k--;
         }
-
-        if (rightMins != null)
-            leftMins.addAll(rightMins);
-        while (m > 0) {
-            cost += leftMins.poll();
-            m--;
-        }
-
         return cost;
-    }
-
-    private PriorityQueue<Integer> pq(int[] costs, int from, int to) {
-        var pq = new PriorityQueue<Integer>();
-        for (int i = from; i < to; i++) {
-            pq.add(costs[i]);
-        }
-        return pq;
     }
 }
