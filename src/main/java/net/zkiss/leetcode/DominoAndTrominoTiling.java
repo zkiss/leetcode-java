@@ -10,28 +10,26 @@ public class DominoAndTrominoTiling {
     }
 
     private int count(int i, boolean topFree, boolean bottomFree, Integer[][] tileCounts) {
-        if (i == tileCounts.length) {
-            return 1;
-        }
         int state = state(topFree, bottomFree);
         if (tileCounts[i][state] != null) {
             return tileCounts[i][state];
         }
+        if (i == tileCounts.length - 1) {
+            return topFree ^ bottomFree ? 0 : 1;
+        }
+
         var count = 0L;
-        var hasNext = i + 1 < tileCounts.length;
         if (topFree && bottomFree) {
             count += count(i + 1, true, true, tileCounts);
-            if (hasNext) {
-                count += count(i + 1, false, true, tileCounts);
-                count += count(i + 1, true, false, tileCounts);
-                count += count(i + 1, false, false, tileCounts);
-            }
+            count += count(i + 1, false, true, tileCounts);
+            count += count(i + 1, true, false, tileCounts);
+            count += count(i + 1, false, false, tileCounts);
         }
-        if (topFree && !bottomFree && hasNext) {
+        if (topFree && !bottomFree) {
             count += count(i + 1, false, true, tileCounts);
             count += count(i + 1, false, false, tileCounts);
         }
-        if (!topFree && bottomFree && hasNext) {
+        if (!topFree && bottomFree) {
             count += count(i + 1, true, false, tileCounts);
             count += count(i + 1, false, false, tileCounts);
         }
