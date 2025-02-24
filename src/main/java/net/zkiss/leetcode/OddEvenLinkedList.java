@@ -5,25 +5,22 @@ import net.zkiss.leetcode.common.ListNode;
 //https://leetcode.com/problems/odd-even-linked-list
 public class OddEvenLinkedList {
     public ListNode oddEvenList(ListNode head) {
-        if (head == null) {
-            return null;
+        if (head == null) return null;
+        var even = head.next;
+        var o = head;
+        var e = even;
+        while (e != null && e.next != null) {
+            var o2 = e.next;
+            var e2 = o2.next;
+            o.next = o2;
+            o = o2;
+            e.next = e2;
+            e = e2;
         }
-        var ho = head;
-        var he = head.next;
-        var o = ho;
-        var e = o.next;
-
-        while (e != null) {
-            var oo = e.next;
-            var ee = oo != null ? oo.next : null;
-            o.next = oo;
-            e.next = ee;
-            e = ee;
-            if (oo != null)
-                o = oo;
+        o.next = even;
+        if (e != null) {
+            e.next = null;
         }
-
-        o.next = he;
-        return ho;
+        return head;
     }
 }
