@@ -31,7 +31,7 @@ class CombinationSumIiiTest {
 
     @Test
     void two() {
-        assertThat(cs.combinationSum3(2, 10)).satisfiesExactly(
+        assertThat(cs.combinationSum3(2, 10)).satisfiesExactlyInAnyOrder(
                 l -> assertThat(l).containsExactlyInAnyOrder(1, 9),
                 l -> assertThat(l).containsExactlyInAnyOrder(2, 8),
                 l -> assertThat(l).containsExactlyInAnyOrder(3, 7),

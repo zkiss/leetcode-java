@@ -6,27 +6,24 @@ import java.util.List;
 //https://leetcode.com/problems/combination-sum-iii
 public class CombinationSumIii {
     public List<List<Integer>> combinationSum3(int k, int n) {
-        var results = new LinkedList<List<Integer>>();
-        cs(n, k, 1, new LinkedList<>(), results);
-        return results;
+        var ans = new LinkedList<List<Integer>>();
+        cs3(k, n, 1, new LinkedList<>(), ans);
+        return ans;
     }
 
-    private void cs(int target, int numbers, int start, List<Integer> current, List<List<Integer>> results) {
-        if (numbers == 1) {
-            if (start <= target && target <= 9) {
-                current.add(target);
-                results.add(List.copyOf(current));
+    private void cs3(int k, int n, int start, LinkedList<Integer> current, LinkedList<List<Integer>> ans) {
+        if (k == 1) {
+            if (start <= n && n <= 9) {
+                current.add(n);
+                ans.add(List.copyOf(current));
                 current.removeLast();
             }
             return;
         }
 
-        for (int i = start; i <= 9; i++) {
-            if (target - i < i + 1) {
-                continue;
-            }
+        for (var i = start; i <= 9; i++) {
             current.add(i);
-            cs(target - i, numbers - 1, i + 1, current, results);
+            cs3(k - 1, n - i, i + 1, current, ans);
             current.removeLast();
         }
     }
