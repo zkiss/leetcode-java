@@ -3,28 +3,18 @@ package net.zkiss.leetcode;
 //https://leetcode.com/problems/string-compression
 public class StringCompression {
     public int compress(char[] chars) {
-        char c = chars[0];
-        var cnt = 1;
-        var w = 1;
-        for (int r = 1; r < chars.length; r++) {
-            if (chars[r] == c) {
-                cnt++;
-                continue;
-            }
-            c = chars[r];
-            if (cnt > 1) {
-                for (char n : Integer.toString(cnt).toCharArray()) {
-                    chars[w++] = n;
+        int write = 0, currentStart = 0;
+        for (int read = 0; read < chars.length; read++) {
+            if (read + 1 == chars.length || chars[read] != chars[read + 1]) {
+                chars[write++] = chars[read];
+                if (currentStart < read) {
+                    for (char c : Integer.toString((read + 1) - currentStart).toCharArray()) {
+                        chars[write++] = c;
+                    }
                 }
-                cnt = 1;
-            }
-            chars[w++] = c;
-        }
-        if (cnt > 1) {
-            for (char n : Integer.toString(cnt).toCharArray()) {
-                chars[w++] = n;
+                currentStart = read + 1;
             }
         }
-        return w;
+        return write;
     }
 }
