@@ -15,8 +15,10 @@ public class LongestSubarrayOf1sAfterDeletingOneElement {
                     l++;
                 }
             }
+            // actual length of [l...r]: r+1-l
             max = Math.max(max, r - l);
         }
-        return deleted ? max : nums.length - 1;
+        // but delete 1, so r+1-l - 1 = r-l
+        return max;
     }
 }
