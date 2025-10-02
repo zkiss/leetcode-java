@@ -11,35 +11,15 @@ class LeafSimilarTreesTest {
 
     @Test
     void example1() {
-        var root1 = new TreeNode(3,
-                new TreeNode(5,
-                        new TreeNode(6),
-                        new TreeNode(2,
-                                new TreeNode(7),
-                                new TreeNode(4))),
-                new TreeNode(1,
-                        new TreeNode(9),
-                        new TreeNode(8)));
-        var root2 = new TreeNode(3,
-                new TreeNode(5,
-                        new TreeNode(6),
-                        new TreeNode(7)),
-                new TreeNode(1,
-                        new TreeNode(4),
-                        new TreeNode(2,
-                                new TreeNode(9),
-                                new TreeNode(8))));
+        var root1 = TreeNode.of(3, 5, 1, 6, 2, 9, 8, null, null, 7, 4);
+        var root2 = TreeNode.of(3, 5, 1, 6, 7, 4, 2, null, null, null, null, null, null, 9, 8);
         assertThat(lst.leafSimilar(root1, root2)).isTrue();
     }
 
     @Test
     void example2() {
-        var root1 = new TreeNode(1,
-                new TreeNode(2),
-                new TreeNode(3));
-        var root2 = new TreeNode(1,
-                new TreeNode(3),
-                new TreeNode(2));
+        var root1 = TreeNode.of(1, 2, 3);
+        var root2 = TreeNode.of(1, 3, 2);
         assertThat(lst.leafSimilar(root1, root2)).isFalse();
     }
 
