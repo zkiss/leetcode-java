@@ -11,22 +11,12 @@ class MaximumDepthOfBinaryTreeTest {
 
     @Test
     void example1() {
-        assertThat(md.maxDepth(
-                new TreeNode(3,
-                        new TreeNode(9),
-                        new TreeNode(20,
-                                new TreeNode(15),
-                                new TreeNode(7)))
-        )).isEqualTo(3);
+        assertThat(md.maxDepth(TreeNode.of(3, 9, 20, null, null, 15, 7))).isEqualTo(3);
     }
 
     @Test
     void example2() {
-        assertThat(md.maxDepth(
-                new TreeNode(1,
-                        null,
-                        new TreeNode(2))
-        )).isEqualTo(2);
+        assertThat(md.maxDepth(TreeNode.of(1, null, 2))).isEqualTo(2);
     }
 
     @Test
